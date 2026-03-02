@@ -1,0 +1,140 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateStr = post.data.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 2);
+---
+
+<Layout
+  title={`${post.data.title} — Erin Dohan`}
+  description={post.data.description}
+  article={true}
+>
+
+  <!-- Post header -->
+  <section
+    class="pt-36 pb-12 md:pt-44 md:pb-16"
+    style="background-color: #FDF9F5; border-bottom: 1px solid #E8DED6;"
+  >
+    <div class="max-w-3xl mx-auto px-6">
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        {post.data.tags.map(tag => (
+          <span class="section-label">{tag}</span>
+        ))}
+      </div>
+
+      <h1 class="font-playfair text-4xl md:text-5xl font-bold text-dark leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="mt-4 font-cormorant italic text-xl text-mid leading-relaxed max-w-2xl">
+        {post.data.description}
+      </p>
+
+      <!-- Meta row -->
+      <div class="mt-8 flex items-center gap-4 text-sm text-light-mid">
+        <div class="flex items-center gap-3">
+          <!-- Author avatar placeholder -->
+          <div
+            class="w-10 h-10 rounded-full overflow-hidden flex-shrink-0"
+            style="background: linear-gradient(135deg, #D9A08A, #C4836A);"
+            aria-hidden="true"
+          ></div>
+          <div>
+            <p class="font-dm font-medium text-mid text-sm">Erin Dohan</p>
+            <div class="flex items-center gap-2 text-xs text-light-mid">
+              <time datetime={post.data.pubDate.toISOString()}>{dateStr}</time>
+              <span aria-hidden="true">·</span>
+              <span>{post.data.readTime}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Post content -->
+  <section class="py-14 md:py-20" style="background-color: #FAF6F1;">
+    <div class="max-w-3xl mx-auto px-6">
+      <article class="prose-editorial" aria-label="Article content">
+        <Content />
+      </article>
+
+      <!-- Post footer -->
+      <div class="mt-16 pt-10 border-t" style="border-color: #E8DED6;">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <p class="font-dm text-xs font-semibold text-light-mid uppercase tracking-widest mb-1">Written by</p>
+            <p class="font-playfair text-lg font-semibold text-dark">Erin Dohan</p>
+          </div>
+          <a
+            href="/blog"
+            class="inline-flex items-center gap-2 text-terracotta font-dm font-semibold text-sm hover:text-terracotta-dark transition-colors duration-200"
+          >
+            <svg class="w-4 h-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+            All Posts
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Related posts -->
+  {relatedPosts.length > 0 && (
+    <section class="py-16 md:py-20" style="background-color: #FDF9F5; border-top: 1px solid #E8DED6;">
+      <div class="max-w-5xl mx-auto px-6">
+        <p class="section-label mb-6">Continue Reading</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {relatedPosts.map(related => (
+            <article
+              class="group p-6 rounded-sm border"
+              style="background-color: #FDF9F5; border-color: #E8DED6;"
+            >
+              <span class="section-label">{related.data.tags[0]}</span>
+              <h3 class="mt-3 font-playfair text-xl font-bold text-dark group-hover:text-terracotta transition-colors duration-200 leading-snug">
+                <a href={`/blog/${related.slug}`}>{related.data.title}</a>
+              </h3>
+              <p class="mt-3 text-sm text-mid/80 leading-relaxed line-clamp-2">
+                {related.data.description}
+              </p>
+              <div class="mt-4 flex items-center gap-3 text-xs text-light-mid">
+                <time datetime={related.data.pubDate.toISOString()}>
+                  {related.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <span aria-hidden="true">·</span>
+                <span>{related.data.readTime}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+</Layout>

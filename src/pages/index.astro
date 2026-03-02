@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const recentPosts = posts
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+---
+
+<Layout
+  title="Erin Dohan — Author & Survivor"
+  description="When a brain aneurysm nearly killed her at twenty-seven, Erin thought the worst was behind her. Her debut memoir I Think I'm Ready to Talk releases September 2026."
+>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">New Memoir · September 2026</span>
+    <h1 class="hero-title">Author.<br><em>Survivor.</em><br>Voice.</h1>
+    <p class="hero-subtitle">Erin Dohan</p>
+    <p class="hero-desc">
+      When a brain aneurysm nearly killed her at twenty-seven, Erin thought the worst was behind her.
+      What followed were five years of relentless medical battles — and eventually, the courage to
+      <strong>speak the truth out loud.</strong>
+    </p>
+    <div class="hero-ctas">
+      <a href="/the-book" class="btn-primary">About the Book</a>
+      <a href="/about" class="btn-ghost">Read Her Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <img
+        src="/images/book-cover.png"
+        alt="I Think I'm Ready to Talk — book cover"
+        class="hero-book-img"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL CAPTURE -->
+<section class="email-band" id="newsletter">
+  <div class="email-band-text reveal">
+    <h2>Follow Erin's journey before the book drops.</h2>
+    <p>Dispatches on survival, healing, and finding your voice — delivered to your inbox.</p>
+  </div>
+  <form class="email-form reveal" action="#" method="POST">
+    <input type="email" name="email_address" placeholder="Your email address" required />
+    <button type="submit">Join the List</button>
+  </form>
+</section>
+
+<!-- ABOUT STRIP -->
+<section id="about">
+  <div class="about-strip">
+    <div class="about-photo-frame reveal">
+      <img
+        src="/images/author-photo.jpg"
+        alt="Erin Dohan"
+        class="about-photo-img"
+      />
+    </div>
+    <div class="about-content reveal">
+      <span class="section-label">About Erin</span>
+      <h2>She survived the<br>unimaginable. Then she<br><em>wrote about it.</em></h2>
+      <p>
+        Erin Dohan is an accounting controller, writer, wife, and mother based in the western suburbs of Chicago.
+        At 27, she survived a ruptured brain aneurysm — an event that fundamentally transformed her life.
+        What followed were five years of relentless medical battles.
+      </p>
+      <p>
+        Her debut memoir, <em>I Think I'm Ready to Talk</em>, is a raw, honest account of surviving
+        not just illness — but the silence and shame that surrounds women's health.
+      </p>
+      <a href="/about" class="btn-ghost">Full Biography →</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section reveal">
+  <span class="quote-mark">"</span>
+  <p class="quote-text">
+    Silence has weight. When we don't talk about these experiences,
+    we internalize them. We assume our fear is excessive, our anger inappropriate,
+    our exhaustion a personal failure.
+  </p>
+  <span class="quote-attr">— Erin Dohan, I Think I'm Ready to Talk</span>
+</section>
+
+<!-- BOOK SECTION -->
+<section id="book" style="background: var(--dark); padding: 100px 60px;">
+  <div style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: 80px; align-items: center;">
+    <div class="book-cover-sm reveal">
+      <img
+        src="/images/book-cover.png"
+        alt="I Think I'm Ready to Talk — book cover"
+        class="book-cover-sm-img"
+      />
+    </div>
+    <div class="book-info reveal">
+      <span class="section-label">The Book</span>
+      <h2>I Think I'm Ready to Talk</h2>
+      <div class="coming">Coming September 2026</div>
+      <p class="book-subtitle-text">The Messy, Honest Story of Coming Back to Myself After a Ruptured Brain Aneurysm</p>
+      <p>
+        A brain aneurysm. Miscarriage. Emergency abortion. Infertility. Complicated pregnancy, postpartum,
+        ovarian torsion, the loss of both ovaries. And through it all — silence.
+      </p>
+      <p>
+        <em>I Think I'm Ready to Talk</em> is the book Erin Dohan needed to exist. It's for every woman
+        who has suffered through the medical system and been told to be grateful she survived.
+      </p>
+      <div class="book-ctas">
+        <a href="/the-book" class="btn-primary">Learn More</a>
+        <a href="/#newsletter" class="btn-outline">Join the List</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="blog-section" id="blog">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-header reveal">
+      <h2>From the <em>Blog</em></h2>
+      <a href="/blog">All Posts →</a>
+    </div>
+    <div class="blog-grid">
+      {recentPosts.map((post, i) => {
+        const dateStr = post.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        });
+        return (
+          <a href={`/blog/${post.slug}`} class={`blog-card reveal${i === 0 ? ' featured' : ''}`}>
+            {post.data.image && (
+              <img src={post.data.image} alt="" class="blog-card-img" aria-hidden="true" />
+            )}
+            <span class="blog-tag">{post.data.tags[0]}</span>
+            <h3>{post.data.title}</h3>
+            <p class="blog-excerpt">{post.data.description}</p>
+            <span class="blog-meta">{dateStr} · {post.data.readTime}</span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SNAPSHOT -->
+<section class="contact-snap">
+  <div class="contact-snap-inner reveal">
+    <span class="section-label">Get in Touch</span>
+    <h2>Questions, press inquiries,<br><em>or just to say hello.</em></h2>
+    <p>Erin is open to hearing about your story, talking brain aneurysm and women's health awareness, or discussing the book.</p>
+    <div class="contact-snap-actions">
+      <a href="/contact" class="btn-primary">Send a Message</a>
+      <div class="contact-snap-social">
+        <a href="https://www.instagram.com/erindohanthings/" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@erindohanthings" target="_blank" rel="noopener" aria-label="TikTok" class="social-icon-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.78a4.85 4.85 0 0 1-1.01-.09z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/Erindohanthings-61576684822463/" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>

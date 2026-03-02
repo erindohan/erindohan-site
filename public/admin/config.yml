@@ -1,0 +1,111 @@
+# ─────────────────────────────────────────────────────────────
+# Decap CMS configuration for erindohan.com
+# Docs: https://decapcms.org/docs/
+# ─────────────────────────────────────────────────────────────
+
+# ── Backend ────────────────────────────────────────────────
+# git-gateway requires Netlify Identity (see README below).
+# If hosting elsewhere, swap to the GitHub backend — see:
+# https://decapcms.org/docs/github-backend/
+backend:
+  name: git-gateway
+  branch: main
+
+# ── Local development ──────────────────────────────────────
+# When running locally (localhost), Decap uses the local file
+# system so you can edit without committing to Git.
+# Run `npm run cms` in a second terminal alongside `npm run dev`,
+# then visit http://localhost:4321/admin/
+local_backend: true
+
+# ── Media uploads ──────────────────────────────────────────
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+# ── Editor settings ────────────────────────────────────────
+editor:
+  preview: false
+
+# ── Collections ────────────────────────────────────────────
+collections:
+
+  # ── Blog Posts ─────────────────────────────────────────
+  - name: blog
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: src/content/blog
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    summary: "{{title}} — {{pubDate}}"
+    sortable_fields: [pubDate, title]
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: "The post title — shown in cards and the page heading."
+
+      - label: Description
+        name: description
+        widget: text
+        hint: "One or two sentences. Shown in blog cards and as the meta description."
+
+      - label: Publish Date
+        name: pubDate
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        hint: "The date this post goes live."
+
+      - label: Tags
+        name: tags
+        widget: list
+        default: ["Essay"]
+        hint: "Comma-separated. E.g. Memoir, Writing Life, Healing, Reflection"
+
+      - label: Read Time
+        name: readTime
+        widget: string
+        default: "5 min read"
+        hint: "Approximate read time shown on cards. E.g. '5 min read'"
+
+      - label: Featured Image
+        name: image
+        widget: image
+        required: false
+        hint: "Optional. Used for Open Graph / social sharing previews."
+
+      - label: Featured Post
+        name: featured
+        widget: boolean
+        default: false
+        hint: "If checked, this post may be highlighted in the homepage blog grid."
+
+      - label: Body
+        name: body
+        widget: markdown
+        hint: "The full post content. Supports Markdown formatting."
+
+  # ── Site Settings (singleton) ──────────────────────────
+  - name: settings
+    label: Site Settings
+    files:
+
+      - label: About Page
+        name: about
+        file: src/content/settings/about.json
+        fields:
+          - label: Bio Paragraph 1
+            name: bio1
+            widget: text
+          - label: Bio Paragraph 2
+            name: bio2
+            widget: text
+          - label: Currently Reading
+            name: reading
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Author, name: author, widget: string }

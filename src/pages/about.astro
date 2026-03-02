@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About Erin Dohan — Author & Memoir Writer"
+  description="Erin Dohan is the author of I Think I'm Ready to Talk. Read about her path from survival to memoir, her writing life, and what drives her to tell hard truths."
+>
+
+  <!-- Page hero -->
+  <section class="pt-36 pb-16 md:pt-44 md:pb-20" style="background-color: #FDF9F5;">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="section-label">About Erin</p>
+      <h1 class="font-playfair text-5xl md:text-6xl font-bold text-dark mt-4 leading-tight max-w-2xl">
+        The woman<br class="hidden md:block" /> behind the words.
+      </h1>
+    </div>
+  </section>
+
+  <!-- Main bio section -->
+  <section class="py-16 md:py-24" style="background-color: #FAF6F1;">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-12 md:gap-16 items-start">
+
+      <!-- Portrait -->
+      <div class="lg:col-span-2">
+        <div class="relative">
+          <div
+            class="absolute -top-5 -left-5 w-full h-full rounded-sm"
+            style="border: 2px solid #D9A08A; opacity: 0.4;"
+            aria-hidden="true"
+          ></div>
+          <div class="relative aspect-[3/4] rounded-sm overflow-hidden">
+            <img
+              src="/images/author-photo.jpg"
+              alt="Erin Dohan"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Pull stat or short credential -->
+        <div class="mt-8 p-6 rounded-sm" style="background-color: #FDF9F5; border: 1px solid #E8DED6;">
+          <p class="font-cormorant italic text-xl text-dark leading-relaxed">
+            "Every story is an act of trust — from the person telling it, and the person receiving it."
+          </p>
+          <p class="mt-3 font-dm text-xs text-light-mid uppercase tracking-widest">Erin Dohan</p>
+        </div>
+      </div>
+
+      <!-- Bio text -->
+      <div class="lg:col-span-3">
+        <h2 class="font-playfair text-2xl md:text-3xl font-bold text-dark leading-snug">
+          A life told in fragments,<br class="hidden md:block" /> finally assembled whole.
+        </h2>
+
+        <div class="mt-8 space-y-5 text-mid">
+          <p>
+            Erin Dohan is an accounting controller, writer, wife, and mother based in the western suburbs of Chicago.
+            At 27, on May 29, 2019, she survived a ruptured brain aneurysm — an event that fundamentally transformed
+            her life trajectory. What followed were five years of relentless medical crises: miscarriage, emergency abortion,
+            infertility, complicated pregnancy, postpartum complications, ovarian torsion, and the removal of both ovaries.
+          </p>
+          <p>
+            Through it all, Erin did what many women are quietly taught to do: she kept going. She managed a career,
+            built a family, and showed up for everyone around her. What she didn't do — until she finally couldn't not —
+            was talk about it.
+          </p>
+          <p>
+            Her debut memoir, <em>I Think I'm Ready to Talk</em>, is what happened when she stopped minimizing. It's a
+            raw, honest account of surviving not just illness, but the medical system, the silence, and the long middle
+            years that nobody celebrates. Written with clarity, dark humor, and deep compassion, it's the book Erin
+            needed to find during the hardest years of her life — and couldn't.
+          </p>
+          <p>
+            Professionally, Erin is a financial strategy leader for startup companies and a mentor to women in leadership.
+            She lives outside Chicago with her husband, their son, and a goldendoodle. She is a champion for brain
+            aneurysm awareness and advocates openly for better listening in women's healthcare.
+          </p>
+        </div>
+
+        <div class="mt-10 pt-8 border-t" style="border-color: #E8DED6;">
+          <h3 class="font-playfair text-xl font-bold text-dark mb-5">What Erin is Reading</h3>
+          <ul class="space-y-3 text-sm">
+            {[
+              { title: 'The Body Keeps the Score', author: 'Bessel van der Kolk' },
+              { title: 'Know My Name', author: 'Chanel Miller' },
+              { title: 'When Things Fall Apart', author: 'Pema Chödrön' },
+              { title: 'Hunger', author: 'Roxane Gay' },
+            ].map(book => (
+              <li class="flex gap-3">
+                <span class="text-terracotta mt-0.5" aria-hidden="true">—</span>
+                <span class="text-mid">
+                  <em class="font-cormorant text-base text-dark">{book.title}</em>
+                  <span class="text-light-mid"> by {book.author}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="py-16 md:py-20" style="background-color: #2C2420;">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <p class="section-label" style="color: #D9A08A;">The Book</p>
+      <h2 class="font-playfair text-3xl md:text-4xl font-bold text-white mt-3 leading-snug">
+        <em class="font-cormorant font-normal italic" style="font-size: 1.1em;">I Think I'm Ready to Talk</em><br />
+        <span style="font-size: 0.75em; font-family: var(--font-dm); font-style: normal; font-weight: 400; color: rgba(255,255,255,0.6);">Coming September 2026</span>
+      </h2>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/the-book" class="btn btn-primary">Learn More About the Book</a>
+        <a href="/contact" class="btn btn-outline-light">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

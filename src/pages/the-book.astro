@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="I Think I'm Ready to Talk — The Memoir by Erin Dohan"
+  description="I Think I'm Ready to Talk is a memoir by Erin Dohan about survival, healing, and the radical act of telling the truth. Coming September 2026."
+>
+
+  <!-- Hero -->
+  <section
+    class="pt-36 pb-0 md:pt-44"
+    style="background-color: #2C2420;"
+    aria-labelledby="book-page-heading"
+  >
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-end pb-16 md:pb-24">
+
+      <!-- Text -->
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span class="font-dm text-xs font-semibold uppercase tracking-widest" style="color: #D9A08A;">
+            Coming September 2026
+          </span>
+        </div>
+        <h1 id="book-page-heading" class="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+          I Think I'm<br />Ready to Talk
+        </h1>
+        <p class="font-cormorant italic text-2xl mt-3" style="color: #9E8D85;">
+          The Messy, Honest Story of Coming Back to Myself After a Ruptured Brain Aneurysm
+        </p>
+
+        <p class="mt-8 leading-relaxed" style="color: rgba(255,255,255,0.65); max-width: 480px;">
+          The memoir Erin searched for during the hardest years of her life — and couldn't find. So she wrote it.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/#newsletter" class="btn btn-primary">
+            Get Notified When It's Available
+          </a>
+        </div>
+
+        <p class="mt-6 font-dm text-xs" style="color: rgba(255,255,255,0.3);">
+          Releasing September 2026 — join the list for first notice.
+        </p>
+      </div>
+
+      <!-- Large book cover -->
+      <div class="flex justify-center md:justify-end">
+        <img
+          src="/images/book-cover.png"
+          alt="I Think I'm Ready to Talk — book cover by Erin Dohan"
+          class="book-3d w-56 md:w-72 rounded-sm"
+          style="aspect-ratio: 2/3; object-fit: cover;"
+        />
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Book description -->
+  <section class="py-20 md:py-28" style="background-color: #FAF6F1;">
+    <div class="max-w-4xl mx-auto px-6">
+      <p class="section-label">About the Book</p>
+      <h2 class="font-playfair text-3xl md:text-4xl font-bold text-dark mt-4 leading-snug max-w-2xl">
+        What it means to rebuild a life while fighting against your own body.
+      </h2>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+        <div class="md:col-span-2 space-y-5 text-mid">
+          <p>
+            At age 27, on May 29, 2019, Erin Dohan survived a ruptured brain aneurysm. Eight hours of surgery.
+            Three weeks in the hospital. Then, discharge — and the assumption that the hard part was over.
+          </p>
+          <p>
+            It wasn't. The five years that followed brought a relentless accumulation of medical crises: miscarriage,
+            emergency abortion, infertility, complicated pregnancy, postpartum complications, ovarian torsion, and
+            ultimately the removal of both ovaries. And woven through every crisis was a medical system that
+            consistently dismissed, minimized, or failed to believe her.
+          </p>
+          <p>
+            <em class="font-cormorant text-lg text-dark">I Think I'm Ready to Talk</em> is a raw and unfiltered
+            exploration of recovery, identity, and what it means to rediscover yourself when your body has been
+            the source of the trauma. Written with honesty, dark humor, and deep compassion, it navigates the
+            gap between what survival looks like from the outside and what it actually feels like on the inside.
+          </p>
+          <p>
+            This is the book for every woman who has suffered through the medical system and been told to be
+            grateful she survived. For every person in the long middle — past the crisis, not yet whole.
+            For anyone who needed this story to already exist.
+          </p>
+        </div>
+
+        <!-- Book details sidebar -->
+        <div>
+          <div class="p-6 rounded-sm" style="background-color: #FDF9F5; border: 1px solid #E8DED6;">
+            <h3 class="font-playfair text-lg font-bold text-dark mb-4">Book Details</h3>
+            <dl class="space-y-3 text-sm">
+              {[
+                { label: 'Publication', value: 'September 2026' },
+                { label: 'Publisher', value: 'Publisher TBD' },
+                { label: 'Format', value: 'Hardcover, Ebook, Audio' },
+                { label: 'Pages', value: 'TBD' },
+                { label: 'ISBN', value: 'Coming Soon' },
+              ].map(item => (
+                <div class="flex flex-col">
+                  <dt class="font-dm font-semibold text-light-mid uppercase text-xs tracking-wider">{item.label}</dt>
+                  <dd class="text-mid mt-0.5">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Pull quote from book -->
+  <section class="py-20 overflow-hidden" style="background-color: #FDF9F5; border-top: 1px solid #E8DED6; border-bottom: 1px solid #E8DED6;">
+    <div class="max-w-3xl mx-auto px-6 text-center relative">
+      <span
+        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 font-playfair leading-none select-none pointer-events-none"
+        style="font-size: 16rem; color: #C4836A; opacity: 0.06; line-height: 1;"
+        aria-hidden="true"
+      >"</span>
+      <blockquote class="relative z-10">
+        <p class="font-cormorant italic text-dark leading-relaxed" style="font-size: clamp(1.4rem, 3vw, 2rem);">
+          I didn't write this book to be brave. I wrote it because I ran out of ways to not write it.
+        </p>
+        <footer class="mt-6">
+          <cite class="font-dm text-xs text-light-mid not-italic uppercase tracking-widest">
+            Erin Dohan — from the Author's Note
+          </cite>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+
+  <!-- Email list CTA -->
+  <section class="py-20 md:py-24" style="background: linear-gradient(135deg, #C4836A 0%, #A0624B 100%);">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <p class="font-dm text-xs font-semibold uppercase tracking-widest text-white/70 mb-4">Coming September 2026</p>
+      <h2 class="font-playfair text-3xl md:text-4xl font-bold text-white leading-snug">
+        Be the first to know<br class="hidden md:block" />
+        when <em class="font-cormorant font-normal italic" style="font-size: 1.05em;">I Think I'm Ready to Talk</em> is available.
+      </h2>
+      <p class="mt-4 text-white/70 max-w-md mx-auto">
+        Join Erin's email list for updates on the book, release news, and writing along the way.
+      </p>
+      <div class="mt-8">
+        <a href="/#newsletter" class="btn btn-outline-light">Join the List</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
