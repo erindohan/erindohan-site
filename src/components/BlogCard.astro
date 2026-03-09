@@ -7,9 +7,10 @@ interface Props {
   readTime: string;
   slug: string;
   featured?: boolean;
+  image?: string;
 }
 
-const { title, description, pubDate, tags, readTime, slug, featured = false } = Astro.props;
+const { title, description, pubDate, tags, readTime, slug, featured = false, image } = Astro.props;
 
 const dateStr = pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -26,6 +27,10 @@ const primaryTag = tags[0] ?? 'Essay';
     class="group relative flex flex-col justify-end p-8 md:p-10 rounded-sm overflow-hidden"
     style="background-color: #2C2420; min-height: 420px;"
   >
+    {image && (
+      <img src={image} alt="" aria-hidden="true" class="blog-card-img" />
+    )}
+
     <!-- Decorative accent -->
     <div
       class="absolute top-0 left-0 w-full h-1"
@@ -52,10 +57,14 @@ const primaryTag = tags[0] ?? 'Essay';
 ) : (
   <!-- Standard card — light -->
   <article
-    class="group relative flex flex-col justify-between p-6 md:p-8 rounded-sm border"
+    class="group relative flex flex-col justify-between p-6 md:p-8 rounded-sm border overflow-hidden"
     style="background-color: #FDF9F5; border-color: #E8DED6;"
   >
-    <div>
+    {image && (
+      <img src={image} alt="" aria-hidden="true" class="blog-card-img" />
+    )}
+
+    <div class="relative z-10">
       <span class="section-label">{primaryTag}</span>
       <h3 class="mt-3 font-playfair text-xl font-bold leading-snug text-dark group-hover:text-terracotta transition-colors duration-200">
         <a href={`/blog/${slug}`} class="after:absolute after:inset-0">
@@ -66,7 +75,7 @@ const primaryTag = tags[0] ?? 'Essay';
         {description}
       </p>
     </div>
-    <div class="mt-6 flex items-center gap-4 text-xs text-light-mid">
+    <div class="relative z-10 mt-6 flex items-center gap-4 text-xs text-light-mid">
       <time datetime={pubDate.toISOString()}>{dateStr}</time>
       <span aria-hidden="true">·</span>
       <span>{readTime}</span>

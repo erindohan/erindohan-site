@@ -62,6 +62,7 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))];
               readTime={post.data.readTime}
               slug={post.slug}
               featured={i === 0}
+              image={post.data.image}
             />
           ))}
         </div>
