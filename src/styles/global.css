@@ -201,7 +201,7 @@ nav {
 .hero-photo-wrap {
   position: absolute; inset: 0;
   background: linear-gradient(135deg, #D4B5A8 0%, #C49A8A 40%, #B8847A 100%);
-  display: flex; align-items: flex-end; justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
 
