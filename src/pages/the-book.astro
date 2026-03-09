@@ -66,8 +66,8 @@ import Layout from '../layouts/Layout.astro';
         What it means to rebuild a life while fighting against your own body.
       </h2>
 
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-        <div class="md:col-span-2 space-y-5 text-mid">
+      <div class="mt-10 max-w-2xl">
+        <div class="space-y-5 text-mid">
           <p>
             At age 27, on May 29, 2019, Erin Dohan survived a ruptured brain aneurysm. Eight hours of surgery.
             Three weeks in the hospital. Then, discharge — and the assumption that the hard part was over.
@@ -91,26 +91,6 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
 
-        <!-- Book details sidebar -->
-        <div>
-          <div class="p-6 rounded-sm" style="background-color: #FDF9F5; border: 1px solid #E8DED6;">
-            <h3 class="font-playfair text-lg font-bold text-dark mb-4">Book Details</h3>
-            <dl class="space-y-3 text-sm">
-              {[
-                { label: 'Publication', value: 'September 2026' },
-                { label: 'Publisher', value: 'Publisher TBD' },
-                { label: 'Format', value: 'Hardcover, Ebook, Audio' },
-                { label: 'Pages', value: 'TBD' },
-                { label: 'ISBN', value: 'Coming Soon' },
-              ].map(item => (
-                <div class="flex flex-col">
-                  <dt class="font-dm font-semibold text-light-mid uppercase text-xs tracking-wider">{item.label}</dt>
-                  <dd class="text-mid mt-0.5">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
       </div>
     </div>
   </section>
