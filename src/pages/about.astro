@@ -78,6 +78,26 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
 
+        <div class="mt-10 pt-8 border-t" style="border-color: #E8DED6;">
+          <h3 class="font-playfair text-xl font-bold text-dark mb-5">What Erin is Reading</h3>
+          <ul class="space-y-3 text-sm">
+            {[
+              { title: 'The Body Keeps the Score', author: 'Bessel van der Kolk' },
+              { title: 'Know My Name', author: 'Chanel Miller' },
+              { title: 'When Things Fall Apart', author: 'Pema Chödrön' },
+              { title: 'Hunger', author: 'Roxane Gay' },
+            ].map(book => (
+              <li class="flex gap-3">
+                <span class="text-terracotta mt-0.5" aria-hidden="true">—</span>
+                <span class="text-mid">
+                  <em class="font-cormorant text-base text-dark">{book.title}</em>
+                  <span class="text-light-mid"> by {book.author}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
