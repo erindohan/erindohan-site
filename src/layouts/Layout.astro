@@ -91,11 +91,12 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
           btn.disabled = true;
           btn.textContent = 'Submitting…';
           try {
-            await fetch('https://app.kit.com/forms/42243e9881/subscriptions', {
+            const res = await fetch('https://api.convertkit.com/v3/forms/9185124/subscribe', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email_address: email }),
+              body: JSON.stringify({ api_key: 't4lZBYAQtj6u8k76hE1OJw', email }),
             });
+            if (!res.ok) throw new Error();
             form.style.display = 'none';
             const success = form.parentElement?.querySelector('.kit-success') as HTMLElement;
             if (success) success.style.display = 'block';
