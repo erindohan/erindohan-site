@@ -797,6 +797,16 @@ footer {
 }
 .prose-editorial a { color: var(--terracotta); text-decoration: underline; text-underline-offset: 3px; }
 .prose-editorial a:hover { color: var(--terracotta-dark); }
+.prose-editorial h2 { clear: both; }
+.prose-editorial figure { display: block; }
+@media (max-width: 768px) {
+  .prose-editorial figure[style*="float"] {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1.5rem 0 !important;
+  }
+}
 
 /* ── Hero book image ── */
 .hero-book-img {
