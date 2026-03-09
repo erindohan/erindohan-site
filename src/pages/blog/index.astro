@@ -5,9 +5,6 @@ import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
-// Group by tag for optional tag filter display
-const allTags = [...new Set(posts.flatMap(p => p.data.tags))];
 ---
 
 <Layout
@@ -29,20 +26,6 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))];
         On survival, healing, women's health, and the memoir process.
       </p>
 
-      <!-- Tag pills -->
-      {allTags.length > 0 && (
-        <div class="mt-8 flex flex-wrap gap-2" role="list" aria-label="Post categories">
-          {allTags.map(tag => (
-            <span
-              role="listitem"
-              class="font-dm text-xs font-medium uppercase tracking-widest px-3 py-1.5 rounded-full"
-              style="background-color: #E8DED6; color: #6B5B52;"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
     </div>
   </section>
 
