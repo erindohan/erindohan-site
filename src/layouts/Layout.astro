@@ -81,5 +81,30 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <Nav />
     <slot />
     <Footer />
+    <script>
+      document.querySelectorAll('[data-kit-form]').forEach(form => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = (form.querySelector('input[type="email"]') as HTMLInputElement)?.value;
+          if (!email) return;
+          const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+          btn.disabled = true;
+          btn.textContent = 'Submitting…';
+          try {
+            await fetch('https://app.kit.com/forms/42243e9881/subscriptions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email_address: email }),
+            });
+            form.style.display = 'none';
+            const success = form.parentElement?.querySelector('.kit-success') as HTMLElement;
+            if (success) success.style.display = 'block';
+          } catch {
+            btn.disabled = false;
+            btn.textContent = 'Try Again';
+          }
+        });
+      });
+    </script>
   </body>
 </html>

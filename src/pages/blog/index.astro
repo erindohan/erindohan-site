@@ -63,8 +63,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDa
         Join the list and get Erin's latest posts as soon as they're published.
       </p>
       <form
-        action="#"
-        method="POST"
+        data-kit-form
         class="mt-6 flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
         aria-label="Email signup form"
       >
@@ -83,6 +82,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDa
           Subscribe
         </button>
       </form>
+      <p class="kit-success" style="display:none; color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 1rem;">You're on the list — thank you!</p>
     </div>
   </section>
 
