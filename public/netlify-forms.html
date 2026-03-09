@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <!-- This file exists solely so Netlify's form scanner detects the contact form.
+       Do not delete it. The actual form lives at /contact. -->
+  <form name="contact" netlify netlify-honeypot="bot-field" method="POST">
+    <input type="hidden" name="form-name" value="contact" />
+    <input name="bot-field" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <select name="subject">
+      <option value="book">About the Book</option>
+      <option value="aneurysm">Brain Aneurysm Awareness</option>
+      <option value="womens-health">Women's Health Awareness</option>
+      <option value="media">Media &amp; Press Inquiry</option>
+      <option value="speaking">Speaking or Events</option>
+      <option value="story">Share Your Story</option>
+      <option value="other">Other</option>
+    </select>
+    <textarea name="message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
