@@ -84,18 +84,19 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Contact form -->
       <div class="lg:col-span-2">
-        <!--
-          To connect this form:
-          - Netlify: add netlify attribute to <form> and netlify-honeypot="bot-field"
-          - Formspree: set action="https://formspree.io/f/YOUR_ID"
-          - Custom: set action to your API endpoint
-        -->
         <form
-          action="#"
+          name="contact"
           method="POST"
+          action="/thank-you"
+          netlify
+          netlify-honeypot="bot-field"
           class="space-y-6"
           aria-label="Contact form"
         >
+          <input type="hidden" name="form-name" value="contact" />
+          <p style="display:none;">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>

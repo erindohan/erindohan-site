@@ -109,23 +109,19 @@ Survived a ruptured brain aneurysm on May 29, 2019 (age 27).
 - [x] Netlify deployment with auto-deploy on push
 - [x] Custom domain erindohan.com via Squarespace nameservers → Netlify DNS
 - [x] SSL certificate (auto-provisioned by Netlify)
+- [x] Kit email signup forms connected (Homepage + Blog page)
+- [x] Contact form connected via Netlify Forms — submissions emailed to Erin@erindohan.com (set notification in Netlify dashboard → Forms → contact → Form notifications)
 
 ---
 
 ## Remaining tasks
 
-### Priority 1 — Email list integration
-Connect the email signup forms to **Kit (formerly ConvertKit)**.
+### Priority 1 — Review blog post content
+Review the remaining 2 blog posts to confirm the content matches the originals:
+- `when-illness-outlasts-empathy.mdx` — Feb 23, 2026 — Personal Essay
+- `why-i-wrote-this-book.mdx` — Dec 29, 2025 — On Writing
 
-Currently both forms submit to `action="#"` and do nothing:
-- Homepage `#newsletter` section (`src/pages/index.astro`)
-- Blog page email band (`src/pages/blog/index.astro`)
-
-**Implementation approach:** Use Kit's API endpoint to submit via JavaScript fetch, keeping the existing form styling. You'll need:
-- Kit Form ID (Kit dashboard → Forms → your form → Settings)
-- Kit API endpoint: `https://app.kit.com/forms/FORM_ID/subscriptions`
-
-Replace the form `action="#"` with a JS submit handler that POSTs `{ email_address: "..." }` to Kit's endpoint.
+The other 3 posts (Survival, Postpartum OCD, Medical Gaslighting) have been verified and updated with correct original content.
 
 ### Priority 2 — RSS feed
 Add an RSS feed at `/rss.xml` so Kit can auto-send new blog posts to subscribers.
@@ -151,10 +147,8 @@ Already scaffolded in `public/admin/`. To activate:
 3. Invite Erin via the Identity tab
 4. Visit `https://erindohan.com/admin/` to log in and write posts from the browser
 
-### Priority 4 — Contact form (optional)
-The contact form at `/contact` currently does nothing. Options:
-- **Netlify Forms** (simplest — add `netlify` attribute to the form, zero code)
-- **Formspree** (free tier, emails submissions to Erin@erindohan.com)
+### Priority 4 — Kit email notifications
+In the Kit dashboard, set the sender email to Erin@erindohan.com so subscribers receive emails from her address (not the default). Also set up a welcome email sequence for new subscribers.
 
 ---
 
