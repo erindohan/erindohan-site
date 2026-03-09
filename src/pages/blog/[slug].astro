@@ -76,6 +76,18 @@ const relatedPosts = allPosts
   </section>
 
 
+  <!-- Hero image -->
+  {post.data.image && (
+    <div class="w-full" style="background-color: #FDF9F5; max-height: 520px; overflow: hidden;">
+      <img
+        src={post.data.image}
+        alt=""
+        aria-hidden="true"
+        style="width: 100%; max-height: 520px; object-fit: cover; display: block;"
+      />
+    </div>
+  )}
+
   <!-- Post content -->
   <section class="py-14 md:py-20" style="background-color: #FAF6F1;">
     <div class="max-w-3xl mx-auto px-6">
