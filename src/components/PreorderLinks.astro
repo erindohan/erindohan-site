@@ -1,0 +1,98 @@
+---
+const retailers = [
+  {
+    name: "Amazon",
+    url: "https://www.amazon.com/I-Think-Im-Ready-Talk/dp/B0H475T4ZY/",
+  },
+  {
+    name: "Barnes & Noble",
+    url: "https://www.barnesandnoble.com/w/i-think-im-ready-to-talk-erin-dohan/1150333907?ean=9798897471867",
+  },
+  {
+    name: "Bookshop.org",
+    url: "https://bookshop.org/p/books/i-think-i-m-ready-to-talk/3f77e5f423875e46",
+    note: "Supports independent bookstores",
+  },
+  {
+    name: "Books-A-Million",
+    url: "https://www.booksamillion.com/p/Think-Im-Ready-Talk/Erin-Dohan/9798897471867",
+  },
+  {
+    name: "Walmart",
+    url: "https://www.walmart.com/ip/I-Think-I-m-Ready-to-Talk-Paperback-9798897471867/20282009855",
+  },
+];
+---
+
+<section class="preorder" id="preorder">
+  <p class="eyebrow">Available September 9, 2026</p>
+  <h2>Where to <em>Preorder</em></h2>
+  <div class="retailers">
+    {retailers.map((r) => (
+      <a class="retailer" href={r.url} target="_blank" rel="noopener">
+        <span class="retailer-name">{r.name}</span>
+        {r.note && <span class="retailer-note">{r.note}</span>}
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .preorder {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: #f5ede8;
+    scroll-margin-top: 120px;
+  }
+  .eyebrow {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta, #C4836A);
+    margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--dark, #2C2420);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+  }
+  h2 em {
+    color: var(--terracotta, #C4836A);
+  }
+  .retailers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .retailer {
+    font-family: "DM Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.9rem 1.5rem;
+    border: 1.5px solid var(--dark, #2C2420);
+    border-radius: 4px;
+    color: var(--dark, #2C2420);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-width: 160px;
+  }
+  .retailer:hover {
+    background: var(--terracotta, #C4836A);
+    border-color: var(--terracotta, #C4836A);
+    color: #fff;
+  }
+  .retailer-name {
+    font-weight: 600;
+  }
+  .retailer-note {
+    font-size: 0.72rem;
+    opacity: 0.75;
+    margin-top: 0.2rem;
+  }
+</style>
