@@ -1,0 +1,39 @@
+<a href="/the-book#preorder" class="announce">
+  📖 <strong>Preorder is live</strong><span class="announce-title"> — I Think I'm Ready to Talk</span><span class="announce-date"> · September 9, 2026</span> →
+</a>
+
+<style>
+  .announce {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    height: var(--announce-h, 38px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    white-space: nowrap;
+    overflow: hidden;
+    background: var(--terracotta, #C4836A);
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0 1rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .announce:hover {
+    background: var(--dark, #2C2420);
+  }
+  .announce strong {
+    font-weight: 700;
+  }
+  @media (max-width: 640px) {
+    .announce-title {
+      display: none;
+    }
+  }
+</style>
