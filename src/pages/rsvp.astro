@@ -2,13 +2,20 @@
 import Layout from '../layouts/Layout.astro';
 
 // ─────────────────────────────────────────────────────────────
-// EVENT DETAILS — Erin: edit these three lines with the real
-// date, time, and venue once they're confirmed.
+// EVENT DETAILS — Erin: edit these values if anything changes.
 // ─────────────────────────────────────────────────────────────
 const event = {
-  date: 'September 2026',        // e.g. 'Wednesday, September 9, 2026'
-  time: 'Time to be announced',  // e.g. '6:00 – 8:30 PM'
-  venue: 'Venue to be announced', // e.g. 'The Book Cellar, Chicago, IL'
+  date: 'Saturday, September 26, 2026',
+  time: '7:00 – 10:00 PM',
+  venue: 'The Elmhurst Art Museum',
+  address: '150 S Cottage Hill Ave, Elmhurst, IL 60126',
+  rsvpBy: 'September 1, 2026',
+  highlights: [
+    'Open cocktail bar & hors d’oeuvres',
+    'Live music',
+    'Some words with Erin Dohan at 8:00 PM',
+    'Cocktail attire',
+  ],
 };
 ---
 
@@ -31,7 +38,7 @@ const event = {
         Celebrating <em>I Think I'm Ready to Talk</em>
       </p>
       <p class="mt-5 max-w-lg text-mid leading-relaxed">
-        Join Erin for an evening of celebration, readings, and community as she launches her debut memoir.
+        Join Erin for an evening of celebration and community as she launches her debut memoir.
         Space is limited, so every RSVP is reviewed individually — once you submit the form below,
         you'll receive an email confirming your spot.
       </p>
@@ -39,18 +46,33 @@ const event = {
       <!-- Event details -->
       <dl class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
         <div>
-          <dt class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-1">Date</dt>
+          <dt class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-1">Date &amp; Time</dt>
           <dd class="font-playfair text-lg text-dark">{event.date}</dd>
-        </div>
-        <div>
-          <dt class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-1">Time</dt>
           <dd class="font-playfair text-lg text-dark">{event.time}</dd>
         </div>
-        <div>
+        <div class="sm:col-span-2">
           <dt class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-1">Location</dt>
           <dd class="font-playfair text-lg text-dark">{event.venue}</dd>
+          <dd class="text-sm text-mid mt-1">{event.address}</dd>
         </div>
       </dl>
+
+      <!-- What to expect -->
+      <div class="mt-8 max-w-2xl">
+        <p class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-3">What to Expect</p>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+          {event.highlights.map(item => (
+            <li class="flex gap-3 text-mid leading-relaxed">
+              <span class="text-terracotta text-xs mt-1.5" aria-hidden="true">◈</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p class="mt-8 font-cormorant italic text-xl text-terracotta">
+        Kindly RSVP by {event.rsvpBy}.
+      </p>
     </div>
   </section>
 
