@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// ─────────────────────────────────────────────────────────────
+// EVENT DETAILS — Erin: edit these three lines with the real
+// date, time, and venue once they're confirmed.
+// ─────────────────────────────────────────────────────────────
+const event = {
+  date: 'September 2026',        // e.g. 'Wednesday, September 9, 2026'
+  time: 'Time to be announced',  // e.g. '6:00 – 8:30 PM'
+  venue: 'Venue to be announced', // e.g. 'The Book Cellar, Chicago, IL'
+};
+---
+
+<Layout
+  title="RSVP — Book Launch Party for I Think I'm Ready to Talk"
+  description="RSVP for the launch party celebrating Erin Dohan's debut memoir, I Think I'm Ready to Talk."
+>
+
+  <!-- Page header -->
+  <section
+    class="pt-36 pb-14 md:pt-44 md:pb-16"
+    style="background-color: #FDF9F5; border-bottom: 1px solid #E8DED6;"
+  >
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="section-label">You're Invited</p>
+      <h1 class="font-playfair text-5xl md:text-6xl font-bold text-dark mt-4 leading-tight max-w-2xl">
+        Book Launch Party
+      </h1>
+      <p class="font-cormorant italic text-2xl mt-3 text-terracotta">
+        Celebrating <em>I Think I'm Ready to Talk</em>
+      </p>
+      <p class="mt-5 max-w-lg text-mid leading-relaxed">
+        Join Erin for an evening of celebration, readings, and community as she launches her debut memoir.
+        Please let us know if you'll be there by filling out the form below.
+      </p>
+
+      <!-- Event details -->
+      <dl class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
+        <div>
+          <dt class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-1">Date</dt>
+          <dd class="font-playfair text-lg text-dark">{event.date}</dd>
+        </div>
+        <div>
+          <dt class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-1">Time</dt>
+          <dd class="font-playfair text-lg text-dark">{event.time}</dd>
+        </div>
+        <div>
+          <dt class="font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-1">Location</dt>
+          <dd class="font-playfair text-lg text-dark">{event.venue}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+
+  <!-- RSVP form -->
+  <section class="py-16 md:py-24" style="background-color: #FAF6F1;">
+    <div class="max-w-2xl mx-auto px-6">
+
+      <h2 class="font-playfair text-2xl font-bold text-dark mb-2">RSVP</h2>
+      <p class="text-sm text-mid mb-8 leading-relaxed">
+        Kindly respond so we can plan for our guests. Fields marked
+        <span class="text-terracotta">*</span> are required.
+      </p>
+
+      <!--
+        Netlify Forms submission:
+        - `netlify` enables Netlify's form handling on deploy
+        - `netlify-honeypot` silently drops bot submissions that fill the hidden field
+        - the reCAPTCHA widget (data-netlify-recaptcha) blocks automated spam
+      -->
+      <form
+        name="rsvp"
+        method="POST"
+        action="/rsvp-confirmed"
+        netlify
+        netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
+        class="space-y-6"
+        aria-label="Book launch RSVP form"
+      >
+        <input type="hidden" name="form-name" value="rsvp" />
+        <p style="display:none;">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="rsvp-name" class="block font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-2">
+              Name <span class="text-terracotta" aria-label="required">*</span>
+            </label>
+            <input
+              id="rsvp-name"
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              class="w-full px-4 py-3 rounded-sm font-dm text-sm text-dark border focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent transition-all duration-200"
+              style="background-color: #fff; border-color: #E8DED6;"
+              placeholder="Your full name"
+            />
+          </div>
+
+          <div>
+            <label for="rsvp-email" class="block font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-2">
+              Email <span class="text-terracotta" aria-label="required">*</span>
+            </label>
+            <input
+              id="rsvp-email"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="w-full px-4 py-3 rounded-sm font-dm text-sm text-dark border focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent transition-all duration-200"
+              style="background-color: #fff; border-color: #E8DED6;"
+              placeholder="your@email.com"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="rsvp-attending" class="block font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-2">
+              Will you attend? <span class="text-terracotta" aria-label="required">*</span>
+            </label>
+            <select
+              id="rsvp-attending"
+              name="attending"
+              required
+              class="w-full px-4 py-3 rounded-sm font-dm text-sm text-dark border focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent transition-all duration-200"
+              style="background-color: #fff; border-color: #E8DED6;"
+            >
+              <option value="">Select…</option>
+              <option value="yes">Joyfully accepts</option>
+              <option value="no">Regretfully declines</option>
+              <option value="maybe">Not sure yet</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="rsvp-guests" class="block font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-2">
+              Total in your party
+            </label>
+            <select
+              id="rsvp-guests"
+              name="party-size"
+              class="w-full px-4 py-3 rounded-sm font-dm text-sm text-dark border focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent transition-all duration-200"
+              style="background-color: #fff; border-color: #E8DED6;"
+            >
+              <option value="1">Just me</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5+">5 or more</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="rsvp-notes" class="block font-dm text-xs font-semibold uppercase tracking-widest text-light-mid mb-2">
+            Dietary needs or a note (optional)
+          </label>
+          <textarea
+            id="rsvp-notes"
+            name="notes"
+            rows="4"
+            class="w-full px-4 py-3 rounded-sm font-dm text-sm text-dark border focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent transition-all duration-200 resize-y"
+            style="background-color: #fff; border-color: #E8DED6;"
+            placeholder="Allergies, accessibility needs, or anything you'd like us to know…"
+          ></textarea>
+        </div>
+
+        <!-- Netlify reCAPTCHA widget renders here -->
+        <div data-netlify-recaptcha="true"></div>
+
+        <div class="flex items-center justify-between flex-wrap gap-4 pt-2">
+          <p class="text-xs text-light-mid">
+            <span class="text-terracotta">*</span> Required fields
+          </p>
+          <button type="submit" class="btn btn-primary">
+            Send RSVP
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</Layout>
