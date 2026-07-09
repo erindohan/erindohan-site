@@ -92,7 +92,7 @@ const event = {
         Netlify Forms submission:
         - `netlify` enables Netlify's form handling on deploy
         - `netlify-honeypot` silently drops bot submissions that fill the hidden field
-        - the reCAPTCHA widget (data-netlify-recaptcha) blocks automated spam
+        - Netlify's built-in automatic spam filtering also runs on every submission
       -->
       <form
         name="rsvp"
@@ -100,7 +100,6 @@ const event = {
         action="/rsvp-confirmed"
         netlify
         netlify-honeypot="bot-field"
-        data-netlify-recaptcha="true"
         class="space-y-6"
         aria-label="Book launch RSVP form"
       >
@@ -194,9 +193,6 @@ const event = {
             placeholder="Accessibility needs, a message, or anything you'd like us to know…"
           ></textarea>
         </div>
-
-        <!-- Netlify reCAPTCHA widget renders here -->
-        <div data-netlify-recaptcha="true"></div>
 
         <div class="flex items-center justify-between flex-wrap gap-4 pt-2">
           <p class="text-xs text-light-mid">
