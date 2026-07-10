@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   image?: string;
   article?: boolean;
+  noindex?: boolean;
 }
 
 const {
@@ -16,6 +17,7 @@ const {
   description = 'Erin Dohan is the author of "I Think I\'m Ready to Talk," a memoir about survival, healing, and finding your voice. Coming September 9, 2026.',
   image = '/og-default.jpg',
   article = false,
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -31,6 +33,8 @@ const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
