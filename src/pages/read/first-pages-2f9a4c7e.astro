@@ -9,13 +9,13 @@ import Layout from '../../layouts/Layout.astro';
 >
   <article class="excerpt">
     <!-- Title block -->
-    <header class="excerpt-title">
+    <div class="excerpt-title">
       <p class="excerpt-eyebrow">A Memoir</p>
       <h1 class="excerpt-book-title">I Think I'm Ready to Talk</h1>
       <span class="excerpt-rule" aria-hidden="true"></span>
       <p class="excerpt-author">Erin Dohan</p>
       <p class="excerpt-kicker">The First Pages · A Free Excerpt</p>
-    </header>
+    </div>
 
     <!-- Dedication -->
     <p class="excerpt-dedication">
@@ -61,7 +61,7 @@ import Layout from '../../layouts/Layout.astro';
       <p>I was not in a hospital gown yet. I was wearing black pants and a black-and-white striped shirt I still own. Patrick had just arrived at the hospital after following the ambulance from home and was making his way to the side of my hospital bed to grab my hand. I remember a lot of very small details about that moment, frozen in my head like a photograph, the calm before the storm that no one could have anticipated. As my body was fighting the strong waves of nausea, I did not have the capacity to absorb what was happening. I felt like an outside observer, weirdly calm as I just watched everyone around me from a hospital bed, waiting to be told what to do and when to do it. Everything after that feels fuzzy, like I am grasping at bits and pieces of what happened and hoping I can stitch them together into something accurate.</p>
 
       <!-- Medical chart callout -->
-      <aside class="excerpt-chart">
+      <div class="excerpt-chart">
         <p class="excerpt-chart-label">From My Medical Chart</p>
         <p><span class="excerpt-chart-field">Date &amp; Time:</span> 5/29/2019 4:20 p.m.</p>
         <p>Erin M. Dohan is a 27 Y female.</p>
@@ -70,7 +70,7 @@ import Layout from '../../layouts/Layout.astro';
         <p>Non-smoker, no chronic hypertension, no family history of aneurysms.</p>
         <p>(Hospital Encounter). Assessment and Plan:</p>
         <p>27 yo female with ruptured left choroidal aneurysm s/p clip ligation here for clip/spasm check. Angiogram and possible vasospasm treatment discussed with pt. Questions answered. Consent obtained. RISKS DISCUSSED INCLUDE, BUT ARE NOT LIMITED TO: DEATH, STROKE, BLEEDING, VESSEL INJURY INCLUDING PERFORATION OR DISSECTION, INFECTION, ALLERGIC REACTION, DAMAGE TO KIDNEYS, DEVICE FAILURE, INABILITY TO RETRIEVE DEVICE, RADIATION RELATED HAIR LOSS OR OTHER EFFECTS, OTHER UNFORESEEABLE COMPLICATIONS</p>
-      </aside>
+      </div>
 
       <p>Patrick said that the atmosphere was pretty quiet and relaxed at first. Once a doctor arrived and announced that I had a brain bleed, everything changed. Everything suddenly felt so rushed, so urgent. People began hurrying in and out. The doctor informed us that I would be rushed to a hospital an hour away, which had a nationally renowned neuro ward and surgeon. &ldquo;Basically, it went from skepticism to high alert, and it was terrifying,&rdquo; Patrick told me later. He remembers that a helicopter was in consideration, but someone determined it would take too long, while the ambulance was waiting and ready for me to be loaded.</p>
 
@@ -80,18 +80,20 @@ import Layout from '../../layouts/Layout.astro';
 
       <p>Then I called my mom.</p>
 
-      <p>I started the conversation calmly in a quiet voice, asking her what she was doing. Her answer was something about just getting back from a game of racquetball. In response, I said, &ldquo;I have a little bit of bad news. I have a brain bleed.&rdquo;</p>
+      <p>I started the conversation calmly in a quiet voice, asking her what she was doing. Her answer was something about just getting back from a game of racquetball. In response, I said,</p>
+
+      <p class="excerpt-punchline">&ldquo;I have a little bit of bad news. I have a brain bleed.&rdquo;</p>
     </div>
 
     <!-- Closing -->
-    <footer class="excerpt-end">
+    <div class="excerpt-end">
       <span class="excerpt-rule" aria-hidden="true"></span>
       <p class="excerpt-end-line">The story is just beginning.</p>
       <p class="excerpt-end-sub">I Think I'm Ready to Talk publishes September 9, 2026.</p>
       <p class="excerpt-end-cta"><a href="/the-book">Pre-order &rarr; erindohan.com/the-book</a></p>
       <p class="excerpt-end-thanks">Thank you for reading.</p>
       <p class="excerpt-end-sig">&mdash; Erin</p>
-    </footer>
+    </div>
   </article>
 </Layout>
 
@@ -208,6 +210,18 @@ import Layout from '../../layouts/Layout.astro';
     line-height: 1.72;
     color: var(--dark);
     margin-bottom: 1.5rem;
+  }
+
+  /* Standalone closing line of the prologue */
+  .excerpt-body p.excerpt-punchline {
+    font-family: var(--font-playfair);
+    font-style: italic;
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    line-height: 1.35;
+    color: var(--dark);
+    text-align: center;
+    margin: 2.75rem auto 1rem;
+    max-width: 32rem;
   }
 
   /* Medical chart callout */

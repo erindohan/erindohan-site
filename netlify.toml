@@ -11,3 +11,12 @@
 [[edge_functions]]
   path = "/read/*"
   function = "excerpt-gate"
+
+# Never let the gated excerpt be cached by browsers or the CDN. This guarantees
+# the password gate is re-evaluated on every visit, so a page that was ever
+# viewed before the gate existed can't be served from cache without a password.
+[[headers]]
+  for = "/read/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"
+    X-Robots-Tag = "noindex, nofollow"
