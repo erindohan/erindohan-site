@@ -9,10 +9,25 @@
 // If EXCERPT_PASSWORD is not set, the gate stays open (the page behaves as a
 // plain unlisted page) so no one is ever locked out by a missing config.
 
+// In-source configuration: Netlify auto-discovers edge functions in this
+// directory and reads this `config` to bind the function to a route. This is
+// Netlify's recommended, most reliable declaration method — a netlify.toml
+// [[edge_functions]] entry alone was not binding the function on deploy.
+export const config = {
+  path: "/read/*",
+  cache: "manual",
+};
+
 const COOKIE_NAME = "excerpt_unlocked";
 
 export default async (request, context) => {
   const password = Netlify.env.get("EXCERPT_PASSWORD");
+
+  // Diagnostic: proves in the Netlify "Edge Functions" log that this function
+  // actually runs for /read/* requests, and whether it can see the password.
+  console.log(
+    `[excerpt-gate] ${request.method} ${new URL(request.url).pathname} — password configured: ${Boolean(password)}`,
+  );
 
   // No password configured → don't gate, just serve the page.
   if (!password) {
