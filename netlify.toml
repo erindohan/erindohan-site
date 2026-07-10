@@ -1,0 +1,13 @@
+# Netlify configuration for erindohan.com
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Password-gate the unlisted book excerpt. This Edge Function runs before any
+# page under /read/* is served and requires the EXCERPT_PASSWORD (set in the
+# Netlify dashboard → Site settings → Environment variables) before the excerpt
+# HTML is ever sent to the browser.
+[[edge_functions]]
+  path = "/read/*"
+  function = "excerpt-gate"
