@@ -721,6 +721,18 @@ footer {
 }
 .btn-outline-light:hover { border-color: white; color: white; }
 
+/* Outline button for light backgrounds — terracotta border */
+.btn-outline-terracotta {
+  color: var(--terracotta);
+  border: 1px solid var(--terracotta);
+  background: transparent;
+}
+.btn-outline-terracotta:hover {
+  background: var(--terracotta);
+  color: white;
+  transform: translateY(-2px);
+}
+
 /* 3D book covers — used on /the-book */
 .book-3d {
   transform: perspective(1000px) rotateY(-15deg) rotateX(3deg);
