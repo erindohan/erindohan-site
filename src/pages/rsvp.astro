@@ -219,23 +219,38 @@ const event = {
         two organizations close to her heart. Every gift helps fund research,
         awareness, and support for survivors and their families.
       </p>
-      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center sm:items-stretch">
         <a
           href="https://secure.qgiv.com/event/erindohansbooklaunch/"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn btn-primary"
+          class="btn btn-primary sm:flex-1 flex items-center justify-center text-center"
         >
           Donate to The Bee Foundation
         </a>
-        <a
-          href="https://give.bafound.org/site/TR/Events/General?pg=personal&px=1196233&fr_id=2910"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-outline-terracotta"
-        >
-          Donate to Brain Aneurysm Foundation
-        </a>
+
+        <!-- Brain Aneurysm Foundation — split into two actions (walk + donate) -->
+        <div class="sm:flex-1 flex flex-col">
+          <div class="flex gap-2">
+            <a
+              href="https://give.bafound.org/site/TR/Events/General?pg=personal&px=1196233&fr_id=2910"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-terracotta flex-1 flex items-center justify-center text-center px-3"
+            >
+              Join the Walk Team
+            </a>
+            <a
+              href="https://give.bafound.org/site/Donation2?PROXY_ID=1196233&5893.donation=form1&mfc_pref=T&idb=581904535&df_id=5893&PROXY_TYPE=20&FR_ID=2910"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-terracotta flex-1 flex items-center justify-center text-center px-3"
+            >
+              Donate
+            </a>
+          </div>
+          <p class="mt-2 text-xs text-light-mid">Brain Aneurysm Foundation</p>
+        </div>
       </div>
       <p class="mt-6 text-xs text-light-mid">
         Erin is a proud ambassador for The Bee Foundation.
