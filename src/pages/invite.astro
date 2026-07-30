@@ -1,0 +1,462 @@
+---
+import '../styles/global.css';
+
+// ─────────────────────────────────────────────────────────────
+// EVENT DETAILS — Erin: edit these values if anything changes.
+// ─────────────────────────────────────────────────────────────
+const event = {
+  date: 'September 26, 2026',
+  dateLong: 'Saturday, September 26 at 7PM',
+  time: '7–10pm',
+  venue: 'The Elmhurst Art Museum',
+  address: '150 S Cottage Hill Ave, Elmhurst, IL 60126',
+  rsvpBy: 'September 1',
+  highlights: [
+    'Open cocktail bar & hors d’oeuvres',
+    'Live music',
+    'Some words with Erin Dohan at 8:00p',
+    'Cocktail attire',
+  ],
+};
+
+const title = "You're Invited — Erin Dohan's Book Launch Event";
+const description =
+  "Please join us for author Erin Dohan's book launch event celebrating I Think I'm Ready to Talk — Saturday, September 26, 2026 at The Elmhurst Art Museum in Elmhurst, IL. Cocktails, appetizers, and live music. RSVP by September 1.";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/images/Cover1_V2.jpeg', Astro.site);
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Erin Dohan" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Erin Dohan" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics 4 -->
+    {GA_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+        <script define:vars={{ GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', GA_ID);
+        </script>
+      </>
+    )}
+  </head>
+
+  <body class="invite-body">
+    <main class="invite-card">
+
+      <!-- ── Panel 1: the invitation front ── -->
+      <section class="invite-front">
+        <p class="invite-eyebrow">Please join us for</p>
+
+        <p class="invite-author">Author Erin Dohan&rsquo;s</p>
+        <h1 class="invite-headline">Book Launch Event</h1>
+
+        <p class="invite-lede">
+          Cocktails, appetizers, and music<br />
+          to celebrate the launch of
+        </p>
+
+        <!-- Watercolor blob artwork with the book title -->
+        <div class="blob-art" role="img" aria-label="I Think I'm Ready to Talk — A Memoir">
+          <span class="blob blob-1" aria-hidden="true"></span>
+          <span class="blob blob-2" aria-hidden="true"></span>
+          <span class="blob blob-3" aria-hidden="true"></span>
+          <span class="blob blob-4" aria-hidden="true"></span>
+          <span class="blob blob-5" aria-hidden="true"></span>
+          <span class="blob blob-6" aria-hidden="true"></span>
+          <span class="blob blob-7" aria-hidden="true"></span>
+          <div class="blob-title">
+            <span class="blob-book-title">I Think<br />I&rsquo;m Ready<br />to Talk</span>
+            <span class="blob-book-sub">A Memoir</span>
+          </div>
+        </div>
+
+        <p class="invite-when">
+          {event.dateLong}<br />
+          {event.venue}
+        </p>
+      </section>
+
+      <!-- ── Panel 2: event details ── -->
+      <section class="invite-details">
+        <p class="invite-eyebrow">Event Details</p>
+
+        <div class="detail-block">
+          <h2>Date &amp; Time</h2>
+          <p>{event.date} from {event.time}</p>
+        </div>
+
+        <div class="detail-block">
+          <h2>Location</h2>
+          <p>{event.venue}</p>
+          <p>{event.address}</p>
+        </div>
+
+        <div class="detail-block">
+          <h2>What to Expect</h2>
+          {event.highlights.map(item => <p>{item}</p>)}
+        </div>
+
+        <!-- Book cover + blurb -->
+        <div class="invite-book">
+          <img
+            src="/images/Cover1_V2.jpeg"
+            alt="Book cover of I Think I'm Ready to Talk: A Memoir by Erin Dohan"
+            class="invite-book-cover"
+            width="220"
+            loading="lazy"
+          />
+          <div class="invite-book-blurb">
+            <p>
+              When a brain aneurysm nearly killed her at twenty-seven, Erin thought
+              the worst was behind her. What followed were five years of relentless
+              medical battles and eventually, the courage
+              <strong>to speak the truth out loud.</strong>
+            </p>
+            <p>
+              Learn more about the book and preorder at
+              <a href="https://erindohan.com/the-book/">ErinDohan.com</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- RSVP pill -->
+        <div class="invite-rsvp">
+          <p class="invite-rsvp-line">&mdash; <strong>Please RSVP by {event.rsvpBy}</strong> &mdash;</p>
+          <a href="/rsvp" class="invite-rsvp-btn">RSVP Now</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Press note -->
+    <footer class="invite-foot">
+      <p>
+        For press &amp; media inquiries, interview requests, or review copies,
+        contact <a href="mailto:Erin@erindohan.com">Erin@erindohan.com</a>
+      </p>
+      <p><a href="https://erindohan.com">erindohan.com</a></p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .invite-body {
+    background: var(--cream);
+    padding: 32px 16px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* The "paper" invite */
+  .invite-card {
+    width: 100%;
+    max-width: 680px;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(44, 36, 32, 0.16);
+  }
+
+  /* ── Panel 1: front ── */
+  .invite-front {
+    background: #fff;
+    text-align: center;
+    padding: 72px 40px 64px;
+  }
+
+  .invite-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 48px;
+  }
+
+  .invite-author {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--terracotta);
+    margin-bottom: 8px;
+  }
+
+  .invite-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(2.3rem, 7vw, 3.4rem);
+    line-height: 1.1;
+    color: #6B5B52;
+    margin-bottom: 28px;
+  }
+
+  .invite-lede {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+
+  /* ── Watercolor blob artwork ── */
+  .blob-art {
+    position: relative;
+    width: min(440px, 100%);
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blob {
+    position: absolute;
+    filter: blur(6px);
+    opacity: 0.85;
+  }
+  .blob-1 { /* big rose, center-right */
+    width: 62%; height: 55%; top: 24%; left: 30%;
+    background: radial-gradient(circle at 40% 40%, #EFB2C0, #E8A2B4 70%);
+    border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
+  }
+  .blob-2 { /* dusty pink, top */
+    width: 55%; height: 40%; top: 4%; left: 26%;
+    background: radial-gradient(circle at 50% 60%, #E9B7C3, #DFA5B5 75%);
+    border-radius: 48% 52% 60% 40% / 55% 50% 50% 45%;
+  }
+  .blob-3 { /* peach-orange, left */
+    width: 48%; height: 42%; top: 32%; left: 2%;
+    background: radial-gradient(circle at 60% 40%, #F6C39C, #F0AD84 75%);
+    border-radius: 55% 45% 48% 52% / 45% 58% 42% 55%;
+  }
+  .blob-4 { /* soft yellow, bottom-left */
+    width: 42%; height: 38%; top: 56%; left: 12%;
+    background: radial-gradient(circle at 45% 45%, #F7DFA3, #F2D68F 75%);
+    border-radius: 46% 54% 52% 48% / 58% 44% 56% 42%;
+  }
+  .blob-5 { /* pale sage, top-left */
+    width: 30%; height: 24%; top: 12%; left: 4%;
+    background: radial-gradient(circle at 50% 50%, #EAEBCB, #E2E4BB 80%);
+    border-radius: 52% 48% 45% 55% / 48% 55% 45% 52%;
+  }
+  .blob-6 { /* gray-blue, right */
+    width: 28%; height: 26%; top: 14%; left: 70%;
+    background: radial-gradient(circle at 50% 50%, #BFC8D0, #B0BBC5 80%);
+    border-radius: 55% 45% 52% 48% / 46% 54% 46% 54%;
+  }
+  .blob-7 { /* light pink, bottom */
+    width: 34%; height: 26%; top: 66%; left: 44%;
+    background: radial-gradient(circle at 50% 50%, #F6D3DD, #F1C4D2 80%);
+    border-radius: 48% 52% 55% 45% / 54% 46% 54% 46%;
+  }
+
+  .blob-title {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .blob-book-title {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 6vw, 2.8rem);
+    line-height: 1.18;
+    color: #fff;
+    text-shadow: 0 1px 14px rgba(180, 110, 130, 0.35);
+  }
+  .blob-book-sub {
+    display: block;
+    margin-top: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 1px 10px rgba(180, 110, 130, 0.35);
+  }
+
+  .invite-when {
+    margin-top: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.9;
+    color: var(--mid);
+  }
+
+  /* ── Panel 2: details ── */
+  .invite-details {
+    background: linear-gradient(155deg, #FDF7F2 0%, #FAE9E6 45%, #F8E3DE 100%);
+    text-align: center;
+    padding: 64px 40px 56px;
+  }
+  .invite-details .invite-eyebrow { margin-bottom: 40px; }
+
+  .detail-block { margin-bottom: 36px; }
+  .detail-block h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #3D332C;
+    margin-bottom: 8px;
+  }
+  .detail-block p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--mid);
+  }
+
+  .invite-book {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    text-align: left;
+    max-width: 560px;
+    margin: 52px auto 0;
+  }
+  .invite-book-cover {
+    width: 220px;
+    max-width: 45%;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 4px;
+    box-shadow: 0 16px 40px rgba(44, 36, 32, 0.25);
+  }
+  .invite-book-blurb p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--mid);
+    margin-bottom: 18px;
+  }
+  .invite-book-blurb p:last-child { margin-bottom: 0; }
+  .invite-book-blurb strong { color: #4A3E36; }
+  .invite-book-blurb a {
+    color: var(--terracotta);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .invite-book-blurb a:hover { color: var(--terracotta-dark); }
+
+  /* ── RSVP pill ── */
+  .invite-rsvp {
+    margin: 56px auto 0;
+    max-width: 520px;
+    background: rgba(214, 178, 166, 0.28);
+    border-radius: 999px;
+    padding: 28px 36px;
+  }
+  .invite-rsvp-line {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    color: var(--mid);
+    margin-bottom: 16px;
+  }
+  .invite-rsvp-line strong { color: #3D332C; font-weight: 700; }
+  .invite-rsvp-btn {
+    display: inline-block;
+    background: var(--terracotta);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 40px;
+    border-radius: 999px;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .invite-rsvp-btn:hover {
+    background: var(--terracotta-dark);
+    transform: translateY(-2px);
+  }
+
+  /* ── Footer / press note ── */
+  .invite-foot {
+    /* override the global `footer` flex styles from global.css */
+    display: block;
+    border-top: none;
+    margin-top: 32px;
+    text-align: center;
+    max-width: 560px;
+    padding: 0 16px;
+  }
+  .invite-foot p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--light-mid);
+    margin-bottom: 8px;
+  }
+  .invite-foot a {
+    color: var(--terracotta);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .invite-foot a:hover { color: var(--terracotta-dark); }
+
+  /* ── Mobile ── */
+  @media (max-width: 560px) {
+    .invite-body { padding: 16px 10px 40px; }
+    .invite-front { padding: 52px 24px 44px; }
+    .invite-details { padding: 48px 24px 44px; }
+    .invite-eyebrow { margin-bottom: 32px; }
+    .invite-book {
+      flex-direction: column;
+      text-align: center;
+      gap: 28px;
+    }
+    .invite-book-cover { max-width: 60%; }
+    .invite-rsvp { padding: 24px 20px; border-radius: 32px; }
+  }
+</style>
