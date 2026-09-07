@@ -24,9 +24,10 @@ const retailers = [
 ];
 ---
 
-<section class="preorder" id="preorder">
-  <p class="eyebrow">Available September 9, 2026</p>
-  <h2>Where to <em>Preorder</em></h2>
+<section class="order" id="order">
+  <span id="preorder" class="anchor-alias" aria-hidden="true"></span>
+  <p class="eyebrow">Available Now</p>
+  <h2>Where to <em>Order</em></h2>
   <div class="retailers">
     {retailers.map((r) => (
       <a class="retailer" href={r.url} target="_blank" rel="noopener">
@@ -38,10 +39,16 @@ const retailers = [
 </section>
 
 <style>
-  .preorder {
+  .order {
     text-align: center;
     padding: 3rem 1.5rem;
     background: #f5ede8;
+    scroll-margin-top: 120px;
+  }
+  /* Keeps older /the-book#preorder links landing in the right place. */
+  .anchor-alias {
+    display: block;
+    height: 0;
     scroll-margin-top: 120px;
   }
   .eyebrow {
