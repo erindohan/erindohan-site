@@ -10,6 +10,7 @@ const blog = defineCollection({
     readTime: z.string(),
     image: z.string().optional(),
     featured: z.boolean().default(false),
+    author: z.string().default('Erin Dohan'),
   }),
 });
 
