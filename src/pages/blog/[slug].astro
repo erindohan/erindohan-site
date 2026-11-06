@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { SITE_URL, AUTHOR } from '../../data/site';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -24,6 +25,26 @@ const relatedPosts = allPosts
   .filter(p => p.slug !== post.slug)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 2);
+
+const postUrl = `${SITE_URL}/blog/${post.slug}/`;
+const postSchema = {
+  '@type': 'BlogPosting',
+  '@id': `${postUrl}#post`,
+  mainEntityOfPage: postUrl,
+  url: postUrl,
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  inLanguage: 'en',
+  keywords: post.data.tags,
+  ...(post.data.image ? { image: new URL(post.data.image, SITE_URL).href } : {}),
+  author:
+    post.data.author === AUTHOR.name
+      ? { '@id': AUTHOR['@id'] }
+      : { '@type': 'Person', name: post.data.author },
+  publisher: { '@id': AUTHOR['@id'] },
+  isPartOf: { '@type': 'Blog', '@id': `${SITE_URL}/blog#blog`, name: 'Erin Dohan — Blog', url: `${SITE_URL}/blog` },
+};
 ---
 
 <Layout
@@ -31,6 +52,7 @@ const relatedPosts = allPosts
   description={post.data.description}
   image={post.data.image}
   article={true}
+  schema={[postSchema, AUTHOR]}
 >
 
   <!-- Post header -->

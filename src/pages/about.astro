@@ -1,10 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { AUTHOR, BOOK } from '../data/site';
 ---
 
 <Layout
-  title="About Erin Dohan — Author & Memoir Writer"
+  title="About Erin Dohan — Author of I Think I'm Ready to Talk"
   description="Erin Dohan is the author of I Think I'm Ready to Talk. Read about her path from survival to memoir, her writing life, and what drives her to tell hard truths."
+  schema={[
+    { ...AUTHOR, mainEntityOfPage: AUTHOR.url },
+    { '@type': 'ProfilePage', mainEntity: { '@id': AUTHOR['@id'] } },
+    BOOK,
+  ]}
 >
 
   <!-- Page hero -->

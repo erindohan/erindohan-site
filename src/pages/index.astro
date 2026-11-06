@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { SITE_URL, AUTHOR, BOOK } from '../data/site';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
@@ -9,8 +10,20 @@ const recentPosts = posts
 ---
 
 <Layout
-  title="Erin Dohan — Author & Survivor"
+  title="Erin Dohan — Author of I Think I'm Ready to Talk"
   description="When a brain aneurysm nearly killed her at twenty-seven, Erin thought the worst was behind her. Her debut memoir I Think I'm Ready to Talk is out now — order your copy today."
+  schema={[
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'Erin Dohan',
+      publisher: { '@id': AUTHOR['@id'] },
+      inLanguage: 'en',
+    },
+    AUTHOR,
+    BOOK,
+  ]}
 >
 
 <!-- HERO -->

@@ -41,6 +41,10 @@ Deployed via: **Netlify** (auto-deploys on every `git push` to `main`)
 | `src/pages/blog/index.astro` | Blog index |
 | `src/pages/blog/[slug].astro` | Individual blog post template |
 | `src/pages/contact.astro` | Contact page |
+| `src/pages/rss.xml.ts` | RSS feed at `/rss.xml` (for Kit and feed readers) |
+| `src/data/site.ts` | Shared facts (author, book, ISBN, retailers) used for schema.org JSON-LD |
+| `public/robots.txt`, `public/llms.txt` | Crawler rules and plain-language site summary for AI crawlers |
+| `public/og-default.jpg` | Default social share image (book cover on cream, 1200x630) |
 | `src/content/blog/*.mdx` | Blog post content (5 posts) |
 | `src/content/config.ts` | Content collection schema |
 | `public/images/` | All site images |
@@ -82,7 +86,8 @@ Survived a ruptured brain aneurysm on May 29, 2019 (age 27).
 - **Title:** I Think I'm Ready to Talk
 - **Subtitle:** The Messy, Honest Story of Coming Back to Myself After a Ruptured Brain Aneurysm
 - **Release:** September 2026
-- **Publisher:** TBD
+- **Publisher:** Koehler Books
+- **ISBN-13:** 9798897471867
 
 ### Social
 - Instagram: @erindohanthings — https://www.instagram.com/erindohanthings/
@@ -110,6 +115,7 @@ Survived a ruptured brain aneurysm on May 29, 2019 (age 27).
 - [x] Custom domain erindohan.com via Squarespace nameservers → Netlify DNS
 - [x] SSL certificate (auto-provisioned by Netlify)
 - [x] Kit email signup forms connected (Homepage + Blog page)
+- [x] SEO: `site` set to erindohan.com (canonical URLs), sitemap via `@astrojs/sitemap` at `/sitemap-index.xml`, `robots.txt`, `llms.txt`, schema.org JSON-LD (WebSite, Person, Book with offers, BlogPosting) passed to `Layout` via the `schema` prop, RSS at `/rss.xml`
 - [x] Contact form connected via Netlify Forms — submissions emailed to Erin@erindohan.com (set notification in Netlify dashboard → Forms → contact → Form notifications)
 
 ---
@@ -123,22 +129,8 @@ Review the remaining 2 blog posts to confirm the content matches the originals:
 
 The other 3 posts (Survival, Postpartum OCD, Medical Gaslighting) have been verified and updated with correct original content.
 
-### Priority 2 — RSS feed
-Add an RSS feed at `/rss.xml` so Kit can auto-send new blog posts to subscribers.
-
-Astro has a built-in RSS helper: `@astrojs/rss`. Install and create `src/pages/rss.xml.ts`.
-
-```bash
-npm install @astrojs/rss
-```
-
-Then set `site` in `astro.config.mjs`:
-```js
-export default defineConfig({
-  site: 'https://erindohan.com',
-  // ...
-})
-```
+### Priority 2 — Search Console (one-time, done by Erin)
+RSS and sitemap are live. Verify erindohan.com in Google Search Console, submit `https://erindohan.com/sitemap-index.xml`, and request indexing for `/`, `/the-book`, and `/about` so Google drops the stale erindohan.netlify.app copies.
 
 ### Priority 3 — Decap CMS (optional, for in-browser editing)
 Already scaffolded in `public/admin/`. To activate:
