@@ -1,11 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import OrderLinks from '../components/OrderLinks.astro';
+import { AUTHOR, BOOK, RETAILERS } from '../data/site';
+
+const bookSchema = {
+  ...BOOK,
+  offers: RETAILERS.map((r) => ({
+    '@type': 'Offer',
+    url: r.url,
+    availability: 'https://schema.org/InStock',
+    seller: { '@type': 'Organization', name: r.name },
+  })),
+};
 ---
 
 <Layout
   title="I Think I'm Ready to Talk — The Memoir by Erin Dohan"
   description="I Think I'm Ready to Talk is a memoir by Erin Dohan about survival, healing, and the radical act of telling the truth. Out now — order your copy today."
+  schema={[bookSchema, AUTHOR]}
 >
 
   <!-- Hero -->

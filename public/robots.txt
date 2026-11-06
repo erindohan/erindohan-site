@@ -1,0 +1,7 @@
+# erindohan.com
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /read/
+
+Sitemap: https://erindohan.com/sitemap-index.xml
