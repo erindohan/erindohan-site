@@ -4,6 +4,18 @@
   command = "npm run build"
   publish = "dist"
 
+# The site is also deployed to a second Netlify project at erindohan.netlify.app.
+# Send every visitor (and search engine) from that address to the real domain
+# so there is only one copy of the site in Google's index. "force" is required
+# because the paths exist as real files and would otherwise be served directly.
+# This rule only matches requests whose host is erindohan.netlify.app, so it is
+# a no-op on the erindohan.com deploy.
+[[redirects]]
+  from = "https://erindohan.netlify.app/*"
+  to = "https://erindohan.com/:splat"
+  status = 301
+  force = true
+
 # Password-gate the unlisted book excerpt. This Edge Function runs before any
 # page under /read/* is served and requires the EXCERPT_PASSWORD (set in the
 # Netlify dashboard → Site settings → Environment variables) before the excerpt

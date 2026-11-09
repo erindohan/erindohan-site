@@ -20,7 +20,20 @@ export const config = {
 
 const COOKIE_NAME = "excerpt_unlocked";
 
+const CANONICAL_HOST = "erindohan.com";
+
 export default async (request, context) => {
+  // Edge functions run before redirect rules, so the domain-level redirect in
+  // netlify.toml never gets a chance on /read/*. Handle it here: anyone who
+  // follows an old erindohan.netlify.app excerpt link is sent to the same path
+  // on the real domain before any password prompt is shown.
+  const requestUrl = new URL(request.url);
+  if (requestUrl.hostname.endsWith(".netlify.app")) {
+    requestUrl.hostname = CANONICAL_HOST;
+    requestUrl.port = "";
+    return Response.redirect(requestUrl.toString(), 301);
+  }
+
   const password = Netlify.env.get("EXCERPT_PASSWORD");
 
   // Diagnostic: proves in the Netlify "Edge Functions" log that this function
